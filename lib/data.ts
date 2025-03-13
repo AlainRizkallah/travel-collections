@@ -23,13 +23,13 @@ export let collections: Collection[] = [
         id: "1",
         title: "European Getaways",
         description: "My favorite destinations across Europe",
-        coverImageUrl: "https://images.unsplash.com/photo-1519677100203a0e668c92439",
+        coverImageUrl: "https://images.unsplash.com/photo-1668640019831-072823bc0ce1",
     createdAt: "2023-05-15T10:30:00Z",
         destinations: [
             {
                 id: "101",
                 name: "Paris",
-                imageUrl: "https://images.unsplash.com/photo-15026028986573e91760cbb34",
+                imageUrl: "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f",
     description: "The city of love and lights",
                 location: {
                     city: "Paris",
@@ -39,7 +39,7 @@ export let collections: Collection[] = [
             {
                 id: "102",
                 name: "Barcelona",
-                imageUrl: "https://images.unsplash.com/photo-15834224095162895a77efded",
+                imageUrl: "https://images.unsplash.com/photo-1630219694734-fe47ab76b15e",
     description: "Beautiful architecture and beaches",
                 location: {
                     city: "Barcelona",
@@ -52,13 +52,13 @@ export let collections: Collection[] = [
         id: "2",
         title: "Asian Adventures",
         description: "Exploring the diverse cultures of Asia",
-        coverImageUrl: "https://images.unsplash.com/photo-1535139262971c51845709a48",
+        coverImageUrl: "https://images.unsplash.com/photo-1553244687-0646c8e0b68e",
     createdAt: "2023-06-20T14:15:00Z",
         destinations: [
             {
                 id: "201",
                 name: "Tokyo",
-                imageUrl: "https://images.unsplash.com/photo-1503899036084c55cdd92da26",
+                imageUrl: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf",
     description: "A blend of traditional and ultramodern",
                 location: {
                     city: "Tokyo",
@@ -68,7 +68,7 @@ export let collections: Collection[] = [
             {
                 id: "202",
                 name: "Bangkok",
-                imageUrl: "https://images.unsplash.com/photo-150800960388550cf7c8dd0d5",
+                imageUrl: "https://images.unsplash.com/photo-1508009603885-50cf7c579365",
     description: "Vibrant street life and ornate shrines",
                 location: {
                     city: "Bangkok",
