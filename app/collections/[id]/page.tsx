@@ -7,12 +7,18 @@ interface CollectionDetailPageProps {
 }
 
 // Fetch collection data based on the ID
-function getCollectionById(id: string): Collection | undefined {
-  return collections.find((collection) => collection.id === id);
+async function getCollection(id: string) {
+  const res = await fetch(`http://localhost:3000/api/collections/${id}`);
+
+  if (!res.ok) {
+    return null; // Return null if the collection is not found
+  }
+
+  return res.json();
 }
 
-export default function CollectionDetailPage({ params }: CollectionDetailPageProps) {
-  const collection = getCollectionById(params.id);
+export default async function CollectionDetailPage({ params }: CollectionDetailPageProps) {
+  const collection = await getCollection(params.id);
 
   if (!collection) {
     return notFound(); // Show Next.js 404 page if collection not found
@@ -34,7 +40,7 @@ export default function CollectionDetailPage({ params }: CollectionDetailPagePro
 
       <h2 className="text-2xl font-semibold mb-4">Destinations</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {collection.destinations.map((destination) => (
+        {collection.destinations.map((destination: any) => (
           <div key={destination.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
             <div className="relative h-48 w-full">
               <Image
