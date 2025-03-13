@@ -24,3 +24,26 @@ export async function GET(
         );
     }
 }
+
+export async function DELETE(
+    request: Request,
+    { params }: { params: { id: string } }
+) {
+    try {
+        const index = collections.findIndex((c) => c.id === params.id);
+
+        if (index === -1) {
+            return NextResponse.json({ error: "Collection not found" }, { status: 404 });
+        }
+
+        // Remove collection from the array
+        collections.splice(index, 1);
+
+        return NextResponse.json({ message: "Collection deleted successfully" }, { status: 200 });
+    } catch (error) {
+        return NextResponse.json(
+            { error: 'Failed to delete collection' },
+            { status: 500 }
+        );
+    }
+}
