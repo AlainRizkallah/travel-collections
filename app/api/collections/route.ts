@@ -1,6 +1,6 @@
 // app/api/collections/route.ts
 import { NextResponse } from 'next/server';
-import { collections } from '@/lib/data'; // Import your data store
+import { Collection, collections } from '@/lib/data'; // Import your data store
 
 export async function GET() {
     try {
@@ -25,21 +25,39 @@ export async function POST(request: Request) {
             );
         }
 
-        // Create a new collection
-        const newCollection = {
-            id: Date.now().toString(), // Simple ID generation
+        // Ensure destinations array is valid
+        if (!Array.isArray(body.destinations)) {
+            return NextResponse.json(
+                { error: "Destinations must be an array" },
+                { status: 400 }
+            );
+        }
+
+        // Generate new collection object
+        const newCollection: Collection = {
+            id: crypto.randomUUID(), // Unique ID
             title: body.title,
-            description: body.description || '',
+            description: body.description || "",
             coverImageUrl: body.coverImageUrl,
             createdAt: new Date().toISOString(),
-            destinations: body.destinations || []
+            destinations: body.destinations.map((dest: any) => ({
+                id: crypto.randomUUID(),
+                name: dest.name,
+                imageUrl: dest.imageUrl,
+                description: dest.description,
+                location: {
+                    city: dest.city,
+                    country: dest.country,
+                },
+            })),
         };
 
-        // Add to collections
+        // Add to the in-memory database
         collections.push(newCollection);
 
         return NextResponse.json(newCollection, { status: 201 });
     } catch (error) {
+        console.error("Error creating collection:", error);
         return NextResponse.json(
             { error: 'Failed to create collection' },
             { status: 500 }
